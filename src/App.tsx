@@ -1,25 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Container, CssBaseline } from "@material-ui/core";
+
+import Exchange from "./components/exchange/Exchange";
+import Header from "./components/header/Header";
+import ConversionResult from "./components/conversion-result/ConversionResult";
+import { CurrencyConversion } from "./types/CurrencyConversion";
 
 function App() {
+  const [currencyConversion, setCurrencyConversion] = useState<
+    CurrencyConversion
+  >();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <CssBaseline />
+      <Container maxWidth="sm">
+        <Header />
+        <Exchange setCurrencyConversion={setCurrencyConversion} />
+        <ConversionResult currencyConversion={currencyConversion} />
+      </Container>
+    </>
   );
 }
 
