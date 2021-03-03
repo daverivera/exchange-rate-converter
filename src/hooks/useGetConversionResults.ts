@@ -3,6 +3,11 @@ import { useEffect, useState } from "react";
 import { CurrencyConversion } from "../types/CurrencyConversion";
 import { ExchangeRatesResponse } from "../types/Exchange";
 import { API_RESOURCES } from "../utils/constants";
+import { calculateCurrencyExchange } from "../utils/currency-exchange-calculator";
+import {
+  formatCurrencyExchangeRate,
+  formatResultValue,
+} from "../utils/currency-formatter";
 
 export const useGetConversionResults = (
   currencyConversion: CurrencyConversion
@@ -13,40 +18,58 @@ export const useGetConversionResults = (
   const [destinationToOrigin, setDestinationToOrigin] = useState<string>();
 
   useEffect(() => {
+    const { amount, destinationExchange, originExchange } = currencyConversion;
     const getCurrencyExchangeRates = async () => {
       axios
         .get<ExchangeRatesResponse>(API_RESOURCES.allRates, {
           params: {
-            base: currencyConversion?.originExchange,
-            symbols: currencyConversion?.destinationExchange,
+            base: originExchange.currency,
+            symbols: destinationExchange.currency,
           },
         })
         .then((response) => {
-          const conversion =
-            parseInt(currencyConversion.amount) *
-            response.data.rates[currencyConversion.destinationExchange];
+          const conversion = calculateCurrencyExchange(
+            amount,
+            response.data.rates[destinationExchange.currency]
+          );
           setOriginvalue(
-            `€ ${currencyConversion?.amount} ${currencyConversion.originExchange} =`
+            formatResultValue({
+              amount,
+              currency: originExchange.currency,
+              hasEquals: true,
+              symbol: originExchange.symbol,
+            })
           );
           setDestinationValue(
-            `$ ${conversion} ${currencyConversion.destinationExchange}`
+            formatResultValue({
+              amount: conversion,
+              currency: destinationExchange.currency,
+              symbol: destinationExchange.symbol,
+            })
           );
           setOriginToDestination(
-            `1 ${currencyConversion.originExchange} = ${
-              response.data.rates[currencyConversion.destinationExchange]
-            } ${currencyConversion.destinationExchange}`
+            formatCurrencyExchangeRate({
+              rate: response.data.rates[destinationExchange.currency],
+              fromCurrency: originExchange.currency,
+              toCurrency: destinationExchange.currency,
+            })
           );
           setDestinationToOrigin(
-            `1 ${currencyConversion.destinationExchange} = ${
-              1 / response.data.rates[currencyConversion.destinationExchange]
-            } ${currencyConversion.originExchange}`
+            `1 ${destinationExchange.currency} = ${
+              1 / response.data.rates[destinationExchange.currency]
+            } ${originExchange.currency}`
+          );
+          setDestinationToOrigin(
+            formatCurrencyExchangeRate({
+              rate: 1 / response.data.rates[destinationExchange.currency],
+              fromCurrency: destinationExchange.currency,
+              toCurrency: originExchange.currency,
+            })
           );
         });
     };
 
-    if (currencyConversion) {
-      getCurrencyExchangeRates();
-    }
+    getCurrencyExchangeRates();
   }, [currencyConversion]);
 
   return {

@@ -1,5 +1,7 @@
+import { Currency } from "./Currency";
+
 export interface CurrencyConversion {
-  amount: string
-  originExchange: string;
-  destinationExchange: string;
+  amount: number;
+  destinationExchange: Currency;
+  originExchange: Currency;
 }

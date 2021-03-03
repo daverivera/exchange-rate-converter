@@ -2,9 +2,10 @@ import React from "react";
 import { InputLabel, MenuItem, Select } from "@material-ui/core";
 
 import { CurrencyDropdownContainer } from "./CurrencyDropdown.styles";
+import { Currency } from "../../types/Currency";
 
 interface CurrencyMenuItemsProps {
-  currencyValue: string;
+  currency: Currency;
   exchangeRateNames: string[];
   id: string;
   label: string;
@@ -12,7 +13,7 @@ interface CurrencyMenuItemsProps {
 }
 
 const CurrencyDropdown: React.FC<CurrencyMenuItemsProps> = ({
-  currencyValue,
+  currency,
   exchangeRateNames,
   id,
   label,
@@ -23,7 +24,7 @@ const CurrencyDropdown: React.FC<CurrencyMenuItemsProps> = ({
     <Select
       labelId={id}
       id={`${id}-select`}
-      value={currencyValue}
+      value={currency.currency}
       onChange={(event: React.ChangeEvent<{ value: unknown }>) =>
         setCurrencyValue(event.target.value as string)
       }

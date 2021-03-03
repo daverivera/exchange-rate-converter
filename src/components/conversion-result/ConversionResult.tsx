@@ -2,7 +2,7 @@ import React from "react";
 
 import { CurrencyConversion } from "../../types/CurrencyConversion";
 import { ConversionResultsContainer } from "./ConversionResult.styles";
-import FormattedResultValues from "./FormatetdResultValues";
+import FormattedResultValues from "./FormattedResultValues";
 
 interface ConversionResultProps {
   currencyConversion?: CurrencyConversion;

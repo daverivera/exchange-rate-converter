@@ -1,12 +1,12 @@
 import Styled from "styled-components";
 
 export const FromValue = Styled.div`
-  color: gray;
+  color: #5C667B;
 `;
 
 export const ToValue = Styled.div`
   font-size: 2rem;
-  color: darkgray;
+  color: #2E3C57;
 `;
 
 export const ExchangeRate = Styled.div`

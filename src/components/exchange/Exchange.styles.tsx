@@ -1,12 +1,13 @@
 import Styled from "styled-components";
-import { Button, Paper, TextField } from "@material-ui/core";
+import { Button, Paper } from "@material-ui/core";
+import CurrencyTextField from "@unicef/material-ui-currency-textfield";
 
 export const ExchangeContainer = Styled(Paper)`
   padding: 2rem;
   width: 100%;
 `;
 
-export const Amount = Styled(TextField)`
+export const Amount = Styled(CurrencyTextField)`
   width: 100%;
 `;
 
