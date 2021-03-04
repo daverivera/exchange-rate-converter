@@ -3,7 +3,7 @@ import { Button, Paper } from "@material-ui/core";
 import CurrencyTextField from "@unicef/material-ui-currency-textfield";
 
 export const ExchangeContainer = Styled(Paper)`
-  padding: 2rem;
+  padding: 2rem 1rem;
   width: 100%;
 `;
 

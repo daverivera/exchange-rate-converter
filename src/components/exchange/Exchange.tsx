@@ -6,11 +6,12 @@ import CurrencyDropdown from "./CurrencyDropdown";
 import { useGetAllEchangeRateNames } from "../../hooks/useGetAllExchangeRateNames";
 import { ExchangeContainer, ExchangeButton, Amount } from "./Exchange.styles";
 import { CurrencyConversion } from "../../types/CurrencyConversion";
+import { useCurrency } from "../../hooks/useCurrency";
 import {
   DEFAULT_DESTINATION_CURRENCY,
   DEFAULT_ORIGIN_CURRENCY,
 } from "../../utils/constants";
-import { useCurrency } from "../../hooks/useCurrency";
+import BidirectionalButton from "./BidirectionalButton";
 
 interface ExchangeProps {
   setCurrencyConversion: (currencyConversion: CurrencyConversion) => void;
@@ -40,10 +41,16 @@ const Exchange: React.FC<ExchangeProps> = ({ setCurrencyConversion }) => {
     }
   };
 
+  const swapExchangeCurrency = () => {
+    const newDestinationCurrency = originExchange.currency;
+    setOriginExchange(destinationExchange.currency);
+    setDestinationExchange(newDestinationCurrency);
+  }
+
   return (
     <ExchangeContainer variant="outlined">
-      <Grid container spacing={3}>
-        <Grid item xs={4}>
+      <Grid container spacing={1}>
+        <Grid item xs={3}>
           <Amount
             label="Amount"
             variant="outlined"
@@ -60,6 +67,11 @@ const Exchange: React.FC<ExchangeProps> = ({ setCurrencyConversion }) => {
             id="from-currency-value-input"
             label="From"
             setCurrencyValue={setOriginExchange}
+          />
+        </Grid>
+        <Grid item xs={1}>
+          <BidirectionalButton
+            onClick={swapExchangeCurrency}
           />
         </Grid>
         <Grid item xs={3}>

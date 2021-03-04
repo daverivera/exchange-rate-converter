@@ -55,11 +55,6 @@ export const useGetConversionResults = (
             })
           );
           setDestinationToOrigin(
-            `1 ${destinationExchange.currency} = ${
-              1 / response.data.rates[destinationExchange.currency]
-            } ${originExchange.currency}`
-          );
-          setDestinationToOrigin(
             formatCurrencyExchangeRate({
               rate: 1 / response.data.rates[destinationExchange.currency],
               fromCurrency: destinationExchange.currency,
