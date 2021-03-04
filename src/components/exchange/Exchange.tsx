@@ -2,22 +2,24 @@ import React, { useState } from "react";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { CircularProgress, Grid } from "@material-ui/core";
 
-import CurrencyDropdown from "./CurrencyDropdown";
-import { useGetAllEchangeRateNames } from "../../hooks/useGetAllExchangeRateNames";
+import CurrencyDropdown from "../currency-dropdown/CurrencyDropdown";
+import BidirectionalButton from "../bidirectional-button/BidirectionalButton";
 import { ExchangeContainer, ExchangeButton, Amount } from "./Exchange.styles";
+import { useGetAllEchangeRateNames } from "../../hooks/useGetAllExchangeRateNames";
 import { CurrencyConversion } from "../../types/CurrencyConversion";
 import { useCurrency } from "../../hooks/useCurrency";
 import {
   DEFAULT_DESTINATION_CURRENCY,
   DEFAULT_ORIGIN_CURRENCY,
 } from "../../utils/constants";
-import BidirectionalButton from "./BidirectionalButton";
 
 interface ExchangeProps {
   setCurrencyConversion: (currencyConversion: CurrencyConversion) => void;
 }
 
-const Exchange: React.FC<ExchangeProps> = ({ setCurrencyConversion }) => {
+const Exchange: React.FC<ExchangeProps> = ({
+  setCurrencyConversion,
+}) => {
   const [amount, setAmount] = useState<number>();
   const [originExchange, setOriginExchange] = useCurrency(
     DEFAULT_ORIGIN_CURRENCY
@@ -45,11 +47,11 @@ const Exchange: React.FC<ExchangeProps> = ({ setCurrencyConversion }) => {
     const newDestinationCurrency = originExchange.currency;
     setOriginExchange(destinationExchange.currency);
     setDestinationExchange(newDestinationCurrency);
-  }
+  };
 
   return (
     <ExchangeContainer variant="outlined">
-      <Grid container spacing={1}>
+      <Grid container spacing={3}>
         <Grid item xs={3}>
           <Amount
             label="Amount"
@@ -70,9 +72,7 @@ const Exchange: React.FC<ExchangeProps> = ({ setCurrencyConversion }) => {
           />
         </Grid>
         <Grid item xs={1}>
-          <BidirectionalButton
-            onClick={swapExchangeCurrency}
-          />
+          <BidirectionalButton onClick={swapExchangeCurrency} />
         </Grid>
         <Grid item xs={3}>
           <CurrencyDropdown

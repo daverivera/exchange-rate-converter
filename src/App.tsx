@@ -10,14 +10,23 @@ function App() {
   const [currencyConversion, setCurrencyConversion] = useState<
     CurrencyConversion
   >();
+  const [historicalRateDay, setHistoricalRateDay] = useState<Date>(new Date());
+  const handleChangeHistoricalRateDay = (date: Date) =>
+    setHistoricalRateDay(date);
 
   return (
     <>
       <CssBaseline />
       <Container maxWidth="sm">
         <Header />
-        <Exchange setCurrencyConversion={setCurrencyConversion} />
-        <ConversionResult currencyConversion={currencyConversion} />
+        <Exchange
+          setCurrencyConversion={setCurrencyConversion}
+        />
+        <ConversionResult
+          currencyConversion={currencyConversion}
+          historicalRateDay={historicalRateDay}
+          setHistoricalRateDay={handleChangeHistoricalRateDay}
+        />
       </Container>
     </>
   );

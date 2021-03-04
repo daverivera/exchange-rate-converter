@@ -9,7 +9,7 @@ const axiosMock = new MockAdapter(axios);
 describe("useGetAllEchangeRates", () => {
   describe("when fetching for all the exchange rates", () => {
     it("should return a list with all the rates", async () => {
-      axiosMock.onGet(API_RESOURCES.allRates).reply(200, {
+      axiosMock.onGet(API_RESOURCES.latestRates).reply(200, {
         base: "EUR",
         date: "2021-03-01",
         rates: { CAD: 1.5274 },

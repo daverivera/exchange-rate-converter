@@ -8,9 +8,23 @@ import {
   formatCurrencyExchangeRate,
   formatResultValue,
 } from "../utils/currency-formatter";
+import { urlDateFormatter } from "../utils/date-formatter";
+
+const getApiResource = (historicalRateDay: Date) => {
+  const today = new Date();
+  const isToday =
+    historicalRateDay.getDate() === today.getDate() &&
+    historicalRateDay.getMonth() === today.getMonth() &&
+    historicalRateDay.getFullYear() === today.getFullYear();
+
+  return isToday
+    ? API_RESOURCES.latestRates
+    : `${API_RESOURCES.historicalRates}/${urlDateFormatter(historicalRateDay)}`;
+};
 
 export const useGetConversionResults = (
-  currencyConversion: CurrencyConversion
+  currencyConversion: CurrencyConversion,
+  historicalRateDay: Date
 ) => {
   const [originValue, setOriginvalue] = useState<string>();
   const [originToDestination, setOriginToDestination] = useState<string>();
@@ -19,9 +33,10 @@ export const useGetConversionResults = (
 
   useEffect(() => {
     const { amount, destinationExchange, originExchange } = currencyConversion;
+    const apiResource = getApiResource(historicalRateDay);
     const getCurrencyExchangeRates = async () => {
       axios
-        .get<ExchangeRatesResponse>(API_RESOURCES.allRates, {
+        .get<ExchangeRatesResponse>(apiResource, {
           params: {
             base: originExchange.currency,
             symbols: destinationExchange.currency,
@@ -65,7 +80,7 @@ export const useGetConversionResults = (
     };
 
     getCurrencyExchangeRates();
-  }, [currencyConversion]);
+  }, [currencyConversion, historicalRateDay]);
 
   return {
     originValue,

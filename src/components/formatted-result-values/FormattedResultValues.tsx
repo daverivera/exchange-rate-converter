@@ -10,17 +10,19 @@ import {
 
 interface FormattedResultValuesProps {
   currencyConversion: CurrencyConversion;
+  historicalRateDay: Date;
 }
 
 const FormattedResultValues: React.FC<FormattedResultValuesProps> = ({
   currencyConversion,
+  historicalRateDay
 }) => {
   const {
     originValue,
     destinationValue,
     originToDestination,
     destinationToOrigin,
-  } = useGetConversionResults(currencyConversion);
+  } = useGetConversionResults(currencyConversion, historicalRateDay);
 
   return (
     <>

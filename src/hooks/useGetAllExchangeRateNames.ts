@@ -9,7 +9,7 @@ export const useGetAllEchangeRateNames = () => {
   useEffect(() => {
     (async () => {
       axios
-        .get<ExchangeRatesResponse>(API_RESOURCES.allRates)
+        .get<ExchangeRatesResponse>(API_RESOURCES.latestRates)
         .then((response) => {
           const { base } = response.data;
           const exchangeRateNamesList = Object.keys(response.data.rates);

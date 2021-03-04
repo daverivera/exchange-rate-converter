@@ -1,15 +1,20 @@
 import React from "react";
 
+import FormattedResultValues from "../formatted-result-values/FormattedResultValues";
+import DateSelector from "../date-selector/DateSelector";
 import { CurrencyConversion } from "../../types/CurrencyConversion";
 import { ConversionResultsContainer } from "./ConversionResult.styles";
-import FormattedResultValues from "./FormattedResultValues";
 
 interface ConversionResultProps {
   currencyConversion?: CurrencyConversion;
+  historicalRateDay: Date;
+  setHistoricalRateDay: (historicalRateDay: Date) => void;
 }
 
 const ConversionResult: React.FC<ConversionResultProps> = ({
   currencyConversion,
+  historicalRateDay,
+  setHistoricalRateDay,
 }) => {
   if (!currencyConversion) {
     return null;
@@ -17,7 +22,14 @@ const ConversionResult: React.FC<ConversionResultProps> = ({
 
   return (
     <ConversionResultsContainer>
-      <FormattedResultValues currencyConversion={currencyConversion} />
+      <FormattedResultValues
+        currencyConversion={currencyConversion}
+        historicalRateDay={historicalRateDay}
+      />
+      <DateSelector
+        historicalRateDay={historicalRateDay}
+        setHistoricalRateDay={setHistoricalRateDay}
+      />
     </ConversionResultsContainer>
   );
 };
