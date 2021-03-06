@@ -63,15 +63,18 @@ describe("useGetHistoricalRateData", () => {
         max: 0.8380824673,
         values: [
           {
-            date: "Jan 2018",
+            date: "2018-01-01",
+            formatDate: "Jan 2018",
             rate: 0.8317391666,
           },
           {
-            date: "Feb 2018",
+            date: "2018-02-01",
+            formatDate: "Feb 2018",
             rate: 0.8380824673,
           },
           {
-            date: "Mar 2018",
+            date: "2018-03-01",
+            formatDate: "Mar 2018",
             rate: 0.8352125616,
           },
         ],
