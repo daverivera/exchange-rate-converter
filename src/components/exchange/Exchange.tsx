@@ -55,6 +55,7 @@ const Exchange: React.FC<ExchangeProps> = ({
         <Grid item xs={3}>
           <Amount
             label="Amount"
+            id="currency-amount"
             variant="outlined"
             value={amount}
             outputFormat="number"
@@ -90,6 +91,7 @@ const Exchange: React.FC<ExchangeProps> = ({
             onClick={handleConversion}
             startIcon={<ArrowForwardIosIcon />}
             variant="contained"
+            id="convert-currency-button"
           />
         </Grid>
       </Grid>

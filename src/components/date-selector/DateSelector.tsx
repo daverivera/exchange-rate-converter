@@ -25,6 +25,7 @@ const DateSelector: React.FC<DateSelectorProps> = ({
     <Grid container spacing={1}>
       <Grid item xs={12}>
         <FormControlLabel
+          id="date-select-toggle-button"
           control={
             <Switch
               checked={showDateSelector}
@@ -43,7 +44,7 @@ const DateSelector: React.FC<DateSelectorProps> = ({
               variant="inline"
               format="yyyy/MM/dd"
               margin="normal"
-              id="date-picker-inline"
+              id="date-select-datepicker"
               label="Date picker inline"
               value={historicalRateDay}
               maxDate={new Date()}

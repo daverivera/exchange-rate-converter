@@ -16,6 +16,7 @@ const BidirectionalButton: React.FC<BidirectionalButtonProps> = ({ onClick }) =>
         aria-label="upload picture"
         component="span"
         size="small"
+        id={"bidirectional-exchange-button"}
         onClick={() => onClick()}
       >
         <SyncAltIcon />

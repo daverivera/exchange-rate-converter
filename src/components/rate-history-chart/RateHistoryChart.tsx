@@ -20,7 +20,7 @@ const RateHistoryChart: React.FC<RateHistoryChartProps> = ({
   console.log(historicalRateChartData.values)
 
   return (
-    <RateHistoryChartStyled>
+    <RateHistoryChartStyled id="exchange-rate-history-chart">
       <LineChart
         width={500}
         height={300}

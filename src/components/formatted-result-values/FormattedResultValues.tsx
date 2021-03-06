@@ -26,13 +26,13 @@ const FormattedResultValues: React.FC<FormattedResultValuesProps> = ({
 
   return (
     <>
-      <FromValue>{originValue}</FromValue>
-      <ToValue>{destinationValue}</ToValue>
+      <FromValue id="conversion-result-from-value">{originValue}</FromValue>
+      <ToValue id="conversion-result-to-value">{destinationValue}</ToValue>
 
       <ExchangeRate>
-        <span>{originToDestination}</span>
+        <span id="conversion-result-conversion-to-destionation">{originToDestination}</span>
 
-        <span>{destinationToOrigin}</span>
+        <span id="conversion-result-conversion-to-origin">{destinationToOrigin}</span>
       </ExchangeRate>
     </>
   );

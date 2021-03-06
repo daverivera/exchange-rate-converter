@@ -21,7 +21,7 @@ const ConversionResult: React.FC<ConversionResultProps> = ({
   }
 
   return (
-    <ConversionResultsContainer>
+    <ConversionResultsContainer id="conversion-results-container">
       <FormattedResultValues
         currencyConversion={currencyConversion}
         historicalRateDay={historicalRateDay}

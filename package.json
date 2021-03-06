@@ -10,6 +10,7 @@
     "@unicef/material-ui-currency-textfield": "0.8.6",
     "add": "2.0.6",
     "axios": "0.21.1",
+    "cypress": "^6.6.0",
     "date-fns": "2.18.0",
     "lodash": "^4.17.21",
     "react": "17.0.1",
@@ -39,6 +40,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "e2e": "cypress open",
+    "e2e:run": "cypress run",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
