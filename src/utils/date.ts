@@ -5,3 +5,8 @@ export const urlDateFormatter = (date: Date) => {
 
   return `${year}-${month}-${day}`;
 };
+
+export const calculateThreeMonthsAgo = (date: Date) => {
+  date.setDate(date.getDate() - 90);
+  return date;
+};

@@ -6,8 +6,6 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 
-import { DateSelectorStyled } from "./DateSelector.styles";
-
 interface DateSelectorProps {
   historicalRateDay?: Date;
   setHistoricalRateDay: (historicalRateDay: Date) => void;
@@ -24,8 +22,8 @@ const DateSelector: React.FC<DateSelectorProps> = ({
   };
 
   return (
-    <DateSelectorStyled container spacing={3}>
-      <Grid xs={12}>
+    <Grid container spacing={1}>
+      <Grid item xs={12}>
         <FormControlLabel
           control={
             <Switch
@@ -37,8 +35,8 @@ const DateSelector: React.FC<DateSelectorProps> = ({
           label="Use a specific date rate"
         />
       </Grid>
-      <Grid xs={12}>
-        {showDateSelector && (
+      {showDateSelector && (
+        <Grid item xs={12}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker
               disableToolbar
@@ -55,9 +53,9 @@ const DateSelector: React.FC<DateSelectorProps> = ({
               }}
             />
           </MuiPickersUtilsProvider>
-        )}
-      </Grid>
-    </DateSelectorStyled>
+        </Grid>
+      )}
+    </Grid>
   );
 };
 

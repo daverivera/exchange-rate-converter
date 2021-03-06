@@ -8,7 +8,7 @@ import {
   formatCurrencyExchangeRate,
   formatResultValue,
 } from "../utils/currency-formatter";
-import { urlDateFormatter } from "../utils/date-formatter";
+import { urlDateFormatter } from "../utils/date";
 
 const getApiResource = (historicalRateDay: Date) => {
   const today = new Date();
