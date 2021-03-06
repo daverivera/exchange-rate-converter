@@ -8,9 +8,6 @@ jobs:
     script:
     - yarn build
     - yarn test
-  - stage: e2e
-    script:
-    - yarn e2e:run
 
 # safelist
 branches:
