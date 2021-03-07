@@ -13,6 +13,7 @@ import {
   DEFAULT_ORIGIN_CURRENCY,
 } from "../../utils/constants";
 import MultiCurrencySelector from "../multi-currency-selector/MultiCurrencySelector";
+import {useMultiCurrency} from "../../hooks/useMultiCurrency";
 
 interface ExchangeProps {
   setCurrencyConversion: (currencyConversion: CurrencyConversion) => void;
@@ -25,9 +26,10 @@ const Exchange: React.FC<ExchangeProps> = ({
   const [originExchange, setOriginExchange] = useCurrency(
     DEFAULT_ORIGIN_CURRENCY
   );
-  const [destinationExchange, setDestinationExchange] = useCurrency(
-    DEFAULT_DESTINATION_CURRENCY
-  );
+  const { targetCurrencies, updateTargetCurrencies, selectedTargetCurrencies } = useMultiCurrency(DEFAULT_DESTINATION_CURRENCY);
+  //const [destinationExchange, setDestinationExchange] = useCurrency(
+    //DEFAULT_DESTINATION_CURRENCY
+  //);
   const exchangeRateNames = useGetAllEchangeRateNames();
 
   if (!exchangeRateNames) {
@@ -35,19 +37,20 @@ const Exchange: React.FC<ExchangeProps> = ({
   }
 
   const handleConversion = () => {
-    if (amount) {
-      setCurrencyConversion({
-        amount,
-        destinationExchange,
-        originExchange,
-      });
-    }
+    //if (amount) {
+      //setCurrencyConversion({
+        //amount,
+        //selectedTargetCurrencies[0],
+        ////destinationExchange,
+        //originExchange,
+      //});
+    //}
   };
 
   const swapExchangeCurrency = () => {
-    const newDestinationCurrency = originExchange.currency;
-    setOriginExchange(destinationExchange.currency);
-    setDestinationExchange(newDestinationCurrency);
+    //const newDestinationCurrency = originExchange.currency;
+    //setOriginExchange(destinationExchange.currency);
+    //setDestinationExchange(newDestinationCurrency);
   };
 
           //<CurrencyDropdown
@@ -85,8 +88,9 @@ const Exchange: React.FC<ExchangeProps> = ({
         </Grid>
         <Grid item xs={3}>
           <MultiCurrencySelector
-            currency={destinationExchange}
+            selectedTargetCurrencies={selectedTargetCurrencies}
             exchangeRateNames={exchangeRateNames}
+            updateTargetCurrencies={updateTargetCurrencies}
           />
         </Grid>
         <Grid item xs={1}>
