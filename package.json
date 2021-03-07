@@ -33,7 +33,8 @@
     "@types/react-dom": "17.0.0",
     "@types/recharts": "^1.8.19",
     "@types/styled-components": "5.1.7",
-    "axios-mock-adapter": "1.19.0"
+    "axios-mock-adapter": "1.19.0",
+    "serve": "^11.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -42,7 +43,8 @@
     "test:coverage": "react-scripts test --coverage --watchAll=false",
     "e2e": "cypress open",
     "e2e:run": "cypress run",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prod": "serve -s build --listen 3000"
   },
   "eslintConfig": {
     "extends": [
