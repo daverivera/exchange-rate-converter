@@ -12,6 +12,7 @@ import {
   DEFAULT_DESTINATION_CURRENCY,
   DEFAULT_ORIGIN_CURRENCY,
 } from "../../utils/constants";
+import MultiCurrencySelector from "../multi-currency-selector/MultiCurrencySelector";
 
 interface ExchangeProps {
   setCurrencyConversion: (currencyConversion: CurrencyConversion) => void;
@@ -49,6 +50,13 @@ const Exchange: React.FC<ExchangeProps> = ({
     setDestinationExchange(newDestinationCurrency);
   };
 
+          //<CurrencyDropdown
+            //currency={destinationExchange}
+            //exchangeRateNames={exchangeRateNames}
+            //id="to-currency-value-input"
+            //label="To"
+            //setCurrencyValue={setDestinationExchange}
+          ///>
   return (
     <ExchangeContainer variant="outlined">
       <Grid container spacing={3}>
@@ -76,12 +84,9 @@ const Exchange: React.FC<ExchangeProps> = ({
           <BidirectionalButton onClick={swapExchangeCurrency} />
         </Grid>
         <Grid item xs={3}>
-          <CurrencyDropdown
+          <MultiCurrencySelector
             currency={destinationExchange}
             exchangeRateNames={exchangeRateNames}
-            id="to-currency-value-input"
-            label="To"
-            setCurrencyValue={setDestinationExchange}
           />
         </Grid>
         <Grid item xs={1}>
