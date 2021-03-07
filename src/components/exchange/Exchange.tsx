@@ -4,7 +4,7 @@ import { CircularProgress, Grid } from "@material-ui/core";
 
 import CurrencyDropdown from "../currency-dropdown/CurrencyDropdown";
 import BidirectionalButton from "../bidirectional-button/BidirectionalButton";
-import { ExchangeContainer, ExchangeButton, Amount } from "./Exchange.styles";
+import { ExchangeContainer, ExchangeButton, Amount, CurrencyDropdownContainer } from "./Exchange.styles";
 import { useGetAllEchangeRateNames } from "../../hooks/useGetAllExchangeRateNames";
 import { CurrencyConversion } from "../../types/CurrencyConversion";
 import { useCurrency } from "../../hooks/useCurrency";
@@ -17,9 +17,7 @@ interface ExchangeProps {
   setCurrencyConversion: (currencyConversion: CurrencyConversion) => void;
 }
 
-const Exchange: React.FC<ExchangeProps> = ({
-  setCurrencyConversion,
-}) => {
+const Exchange: React.FC<ExchangeProps> = ({ setCurrencyConversion }) => {
   const [amount, setAmount] = useState<number>();
   const [originExchange, setOriginExchange] = useCurrency(
     DEFAULT_ORIGIN_CURRENCY
@@ -52,7 +50,7 @@ const Exchange: React.FC<ExchangeProps> = ({
   return (
     <ExchangeContainer variant="outlined">
       <Grid container spacing={3}>
-        <Grid item xs={3}>
+        <Grid item sm={3} xs={12}>
           <Amount
             label="Amount"
             id="currency-amount"
@@ -63,7 +61,7 @@ const Exchange: React.FC<ExchangeProps> = ({
             onChange={(_: any, value: number) => setAmount(value)}
           />
         </Grid>
-        <Grid item xs={3}>
+        <CurrencyDropdownContainer item sm={3} xs={4}>
           <CurrencyDropdown
             currency={originExchange}
             exchangeRateNames={exchangeRateNames}
@@ -71,11 +69,11 @@ const Exchange: React.FC<ExchangeProps> = ({
             label="From"
             setCurrencyValue={setOriginExchange}
           />
-        </Grid>
-        <Grid item xs={1}>
+        </CurrencyDropdownContainer>
+        <Grid item sm={1} xs={4}>
           <BidirectionalButton onClick={swapExchangeCurrency} />
         </Grid>
-        <Grid item xs={3}>
+        <CurrencyDropdownContainer item sm={3} xs={4}>
           <CurrencyDropdown
             currency={destinationExchange}
             exchangeRateNames={exchangeRateNames}
@@ -83,15 +81,17 @@ const Exchange: React.FC<ExchangeProps> = ({
             label="To"
             setCurrencyValue={setDestinationExchange}
           />
-        </Grid>
-        <Grid item xs={1}>
+        </CurrencyDropdownContainer>
+        <Grid item sm={1} xs={12}>
           <ExchangeButton
-            disabled={!amount}
             color="primary"
+            disableElevation
+            disabled={!amount}
+            fullWidth
+            id="convert-currency-button"
             onClick={handleConversion}
             startIcon={<ArrowForwardIosIcon />}
             variant="contained"
-            id="convert-currency-button"
           />
         </Grid>
       </Grid>

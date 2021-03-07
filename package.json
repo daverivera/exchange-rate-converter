@@ -36,7 +36,8 @@
     "@types/styled-components": "5.1.7",
     "axios-mock-adapter": "1.19.0",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.6"
+    "enzyme-adapter-react-16": "^1.15.6",
+    "serve": "^11.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -45,7 +46,8 @@
     "test:coverage": "react-scripts test --coverage --watchAll=false",
     "e2e": "cypress open",
     "e2e:run": "cypress run",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prod": "serve -s build --listen 3000"
   },
   "eslintConfig": {
     "extends": [
